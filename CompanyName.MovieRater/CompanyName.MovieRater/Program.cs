@@ -9,11 +9,11 @@ namespace CompanyName.MovieRater
         {
             IMovieFunctions x = new MovieFunctions();
 
-            var g = x.GetAll();
+            var g = x.GetTop();
             foreach (var item in g)
             {
                 Console.WriteLine("Reviewer ID: {0}, Movie ID: {1}, Grade: {2}, Date: {3}\n",
-                    item.ReviewerId, item.MovieId, item.GivenGrade, item.Date);
+                    item.Reviewer, item.Movie, item.Grade, item.Date);
             }
             Console.ReadLine();
         }
