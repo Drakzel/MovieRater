@@ -11,10 +11,11 @@ namespace CompanyName.MovieRater.UnitTesting
 {
     public class UnitTest1
     {
-        static string Path = "../../../../../../ratings.json";
+        private const string Path = "../../../../../../ratings.json";
 
-        public HashSet<Review> reviews { get; set; }
-        public HashSet<Review> reviewsTop { get; set; }
+        private readonly HashSet<Review> reviews = new HashSet<Review>();
+        private readonly HashSet<Review> reviewsTop = new HashSet<Review>();
+
 
         public UnitTest1()
         {
@@ -56,16 +57,17 @@ namespace CompanyName.MovieRater.UnitTesting
         }
         #endregion
 
+        #region Number Of Reviews Of User Test
         [Fact]
-        public void NumberOfReviewsOfUserTest()
+        public void NrofRevsofUserTest()
         {
             IMovieFunctions mf = new MovieFunctions
             {
-                Reviews = reviewsTop
+                Reviews = reviews
             };
             int res = mf.NrOfReviews(3);
             int exp = 2012;
-            Assert.Equal(res, exp);
+            Assert.Equal(exp, res);
         }
 
         [Fact]
@@ -75,12 +77,108 @@ namespace CompanyName.MovieRater.UnitTesting
             {
                 Reviews = reviews
             };
+
             Random rand = new Random();
             Stopwatch timer = Stopwatch.StartNew();
             mf.NrOfReviews(rand.Next(1,999));
             timer.Stop();
+
             Assert.True(timer.ElapsedMilliseconds < 4000);
+        }
+        #endregion
+
+        #region Avrage Of Reviewer Test
+        [Fact]
+        public void AvgofRevTest()
+        {
+            IMovieFunctions mf = new MovieFunctions
+            {
+                Reviews = reviews
+            };
+            double exp = 3.64115308151093 ;
+            double res = mf.AvgOfReviewer(3);
+            
+            Assert.Equal(exp, res);
+        }
+        [Fact]
+        public void AvgofRevPerfTest()
+        {
+            IMovieFunctions mr = new MovieFunctions
+            {
+                Reviews = reviews
+            };
+
+            Random rnd = new Random();
+            Stopwatch sw = Stopwatch.StartNew();
+            double res = mr.AvgOfReviewer(rnd.Next(1, 999));
+            sw.Stop();
+
+            Assert.True(sw.ElapsedMilliseconds < 4000);
+        }
+
+        #endregion
+
+        #region MovieReviewedByGrade
+        [Fact]
+        public void MovRevByGradeCountTest()
+        {
+            IMovieFunctions mr = new MovieFunctions
+            {
+                Reviews = reviews
+            };
+            int res = mr.MovRevByGrade(2413320, 4);
+            int exp = 19;
+            Assert.Equal(exp, res);
+        }
+
+        [Fact]
+        public void MovRevByGradeCountPerfTest()
+        {
+            IMovieFunctions mr = new MovieFunctions
+            {
+                //List<Review> list = ReadJSON(PATH);
+
+                Reviews = reviews
+            };
+
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+
+            mr.MovRevByGrade(2413320, 2);
+            sw.Stop();
+            Assert.True(sw.ElapsedMilliseconds < 4000);
 
         }
+        #endregion
+        #region MovieReviedCount
+        [Fact]
+        public void MovRevCountTest()
+        {
+            IMovieFunctions mr = new MovieFunctions
+            {
+                Reviews = reviews
+            };
+            int res = mr.MovieRevCount(2534508);
+            int exp = 44;
+
+            Assert.Equal(exp, res);
+        }
+
+        [Fact]
+        public void MovRevCountPerfTest()
+        {
+            IMovieFunctions mr = new MovieFunctions
+            {
+                Reviews = reviews
+            };
+            Random rnd = new Random();
+            Stopwatch sw = Stopwatch.StartNew();
+            int res = mr.MovieRevCount(2534508);
+            sw.Stop();
+
+            Assert.True(sw.ElapsedMilliseconds < 4000);
+        }
+
+        #endregion
     }
 }

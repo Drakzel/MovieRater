@@ -10,8 +10,8 @@ namespace CompanyName.MovieRater
             string Path = "../../../../../../ratings.json";
             IMovieFunctions x = new MovieFunctions();
             x.ReadJson(Path);
-            int res = x.NrOfReviews(3);
-            Console.WriteLine(res);
+            int asd = x.MovieRevCount(2534508); 
+            Console.WriteLine(asd);
             Console.ReadLine();
         }
     }

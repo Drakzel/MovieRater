@@ -26,8 +26,26 @@ namespace MovieRater
         }
         public int NrOfReviews(int RID)
         {
-            int count = Reviews.Where(x => x.Reviewer == RID).Count();
-            return count;
+            int c = Reviews.Where(x => x.Reviewer == RID).Count();
+            return c;
+        }
+
+        public double AvgOfReviewer(int RID)
+        {
+            double avg = Reviews.Where(x => x.Reviewer == RID).Average(x => x.Grade);
+            return avg;
+        }
+
+        public int MovRevByGrade(int MID, int grade)
+        {
+            var gc = Reviews.Where(review => MID == review.Movie && review.Grade == grade).Count();
+            return gc;
+        }
+
+        public int MovieRevCount(int MID)
+        {
+            int c = Reviews.Where(x => x.Movie == MID).Count(); ;
+            return c;
         }
     }
 
