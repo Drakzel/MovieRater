@@ -7,14 +7,11 @@ namespace CompanyName.MovieRater
     {
         static void Main(string[] args)
         {
+            string Path = "../../../../../../ratings.json";
             IMovieFunctions x = new MovieFunctions();
-
-            var g = x.GetTop();
-            foreach (var item in g)
-            {
-                Console.WriteLine("Reviewer ID: {0}, Movie ID: {1}, Grade: {2}, Date: {3}\n",
-                    item.Reviewer, item.Movie, item.Grade, item.Date);
-            }
+            x.ReadJson(Path);
+            int res = x.NrOfReviews(3);
+            Console.WriteLine(res);
             Console.ReadLine();
         }
     }

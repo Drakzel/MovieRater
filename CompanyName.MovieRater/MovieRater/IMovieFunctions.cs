@@ -8,5 +8,8 @@ namespace MovieRater
     {
         HashSet<Review> Reviews { get; set; }
         HashSet<Review> ReviewsTop { get; set; }
+
+        int NrOfReviews(int RID);
+        List<Review> ReadJson(string path);
     }
 }

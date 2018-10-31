@@ -2,6 +2,7 @@ using MovieRater;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Xunit;
@@ -12,13 +13,13 @@ namespace CompanyName.MovieRater.UnitTesting
     {
         static string Path = "../../../../../../ratings.json";
 
-        public HashSet<Review> Reviews { get; set; }
-        public HashSet<Review> ReviewsTop { get; set; }
+        public HashSet<Review> reviews { get; set; }
+        public HashSet<Review> reviewsTop { get; set; }
 
         public UnitTest1()
         {
-            ReviewsTop = ReadTop10(Path).ToHashSet();
-            Reviews = ReadJson(Path).ToHashSet();
+            reviewsTop = ReadTop10(Path).ToHashSet();
+            reviews = ReadJson(Path).ToHashSet();
         }
 
         #region ReadFile
@@ -56,8 +57,29 @@ namespace CompanyName.MovieRater.UnitTesting
         #endregion
 
         [Fact]
-        public void Test1()
+        public void NumberOfReviewsOfUserTest()
         {
+            IMovieFunctions mf = new MovieFunctions
+            {
+                Reviews = reviewsTop
+            };
+            int res = mf.NrOfReviews(3);
+            int exp = 2012;
+            Assert.Equal(res, exp);
+        }
+
+        [Fact]
+        public void NumberOfReviewsOfUserTestPerfTest()
+        {
+            IMovieFunctions mf = new MovieFunctions
+            {
+                Reviews = reviews
+            };
+            Random rand = new Random();
+            Stopwatch timer = Stopwatch.StartNew();
+            mf.NrOfReviews(rand.Next(1,999));
+            timer.Stop();
+            Assert.True(timer.ElapsedMilliseconds < 4000);
 
         }
     }
