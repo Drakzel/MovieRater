@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2019
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieRater", "MovieRater\MovieRater.csproj", "{96A1583B-56EB-446C-95B7-D785B1D76936}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieRater", "MovieRater\MovieRater.csproj", "{96A1583B-56EB-446C-95B7-D785B1D76936}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyName.MovieRater.UnitTesting", "CompanyName.MovieRater.UnitTesting\CompanyName.MovieRater.UnitTesting.csproj", "{D31BDD73-1078-44F3-8BC8-C87A7AF48CBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.MovieRater", "CompanyName.MovieRater\CompanyName.MovieRater.csproj", "{710D8511-1167-48D1-99DF-AA77D2022D06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyName.MovieRater", "CompanyName.MovieRater\CompanyName.MovieRater.csproj", "{710D8511-1167-48D1-99DF-AA77D2022D06}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyName.MSTest", "CompanyName.MSTest\CompanyName.MSTest.csproj", "{D60256C7-6024-4DC2-8788-969049C53A93}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +19,14 @@ Global
 		{96A1583B-56EB-446C-95B7-D785B1D76936}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96A1583B-56EB-446C-95B7-D785B1D76936}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96A1583B-56EB-446C-95B7-D785B1D76936}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D31BDD73-1078-44F3-8BC8-C87A7AF48CBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D31BDD73-1078-44F3-8BC8-C87A7AF48CBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D31BDD73-1078-44F3-8BC8-C87A7AF48CBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D31BDD73-1078-44F3-8BC8-C87A7AF48CBD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{710D8511-1167-48D1-99DF-AA77D2022D06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{710D8511-1167-48D1-99DF-AA77D2022D06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{710D8511-1167-48D1-99DF-AA77D2022D06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{710D8511-1167-48D1-99DF-AA77D2022D06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D60256C7-6024-4DC2-8788-969049C53A93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D60256C7-6024-4DC2-8788-969049C53A93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D60256C7-6024-4DC2-8788-969049C53A93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D60256C7-6024-4DC2-8788-969049C53A93}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
