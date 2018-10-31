@@ -65,8 +65,10 @@ namespace CompanyName.MovieRater.UnitTesting
             {
                 Reviews = reviews
             };
+
             int res = mf.NrOfReviews(3);
             int exp = 2012;
+
             Assert.Equal(exp, res);
         }
 
@@ -95,6 +97,7 @@ namespace CompanyName.MovieRater.UnitTesting
             {
                 Reviews = reviews
             };
+
             double exp = 3.64115308151093 ;
             double res = mf.AvgOfReviewer(3);
             
@@ -126,8 +129,10 @@ namespace CompanyName.MovieRater.UnitTesting
             {
                 Reviews = reviews
             };
+
             int res = mr.MovRevByGrade(2413320, 4);
             int exp = 19;
+
             Assert.Equal(exp, res);
         }
 
@@ -141,15 +146,15 @@ namespace CompanyName.MovieRater.UnitTesting
                 Reviews = reviews
             };
 
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-
+            Stopwatch sw = Stopwatch.StartNew();
             mr.MovRevByGrade(2413320, 2);
             sw.Stop();
+
             Assert.True(sw.ElapsedMilliseconds < 4000);
 
         }
         #endregion
+
         #region MovieReviedCount
         [Fact]
         public void MovRevCountTest()
@@ -158,6 +163,7 @@ namespace CompanyName.MovieRater.UnitTesting
             {
                 Reviews = reviews
             };
+
             int res = mr.MovieRevCount(2534508);
             int exp = 44;
 
@@ -171,6 +177,7 @@ namespace CompanyName.MovieRater.UnitTesting
             {
                 Reviews = reviews
             };
+
             Random rnd = new Random();
             Stopwatch sw = Stopwatch.StartNew();
             int res = mr.MovieRevCount(2534508);
@@ -179,6 +186,40 @@ namespace CompanyName.MovieRater.UnitTesting
             Assert.True(sw.ElapsedMilliseconds < 4000);
         }
 
+        #endregion
+
+        #region Movie Review Average
+        [Fact]
+        public void AvgRateTest()
+        {
+            IMovieFunctions mr = new MovieFunctions
+            {
+                // List<Review> list = ReadJSONTop10(PATH);
+
+                Reviews = reviews
+            };
+
+            double res = mr.MovieRevAvg(2534508);
+            var exp = 3.15909090909091;
+
+            Assert.Equal(exp, res);
+        }
+
+        [Fact]
+        public void AvgRatePerfTest()
+        {
+
+            IMovieFunctions mr = new MovieFunctions
+            {
+                Reviews = reviews
+            };
+
+            Stopwatch sw = Stopwatch.StartNew();
+            mr.MovieRevAvg(1488844);
+            sw.Stop();
+
+            Assert.True(sw.ElapsedMilliseconds < 4000);
+        }
         #endregion
     }
 }

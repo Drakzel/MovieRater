@@ -47,6 +47,13 @@ namespace MovieRater
             int c = Reviews.Where(x => x.Movie == MID).Count(); ;
             return c;
         }
+
+        public double MovieRevAvg(int MID)
+        {
+            var avg = Reviews.Where(review => MID == review.Movie).Average(r => r.Grade);
+
+            return avg;
+        }
     }
 
 }

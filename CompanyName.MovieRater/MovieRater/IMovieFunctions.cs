@@ -14,5 +14,6 @@ namespace MovieRater
         int NrOfReviews(int RID);
         int MovRevByGrade(int MID, int grade);
         int MovieRevCount(int MID);
+        double MovieRevAvg(int MID);
     }
 }
