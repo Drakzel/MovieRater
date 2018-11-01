@@ -124,14 +124,14 @@ namespace CompanyName.MovieRater.UnitTesting
 
         #region MovieReviewedByGrade
         [Fact]
-        public void MovRevByGradeCountTest()
+        public void MovRevCountByGradeTest()
         {
             IMovieFunctions mr = new MovieFunctions
             {
                 Reviews = reviews
             };
 
-            int res = mr.MovRevByGrade(2413320, 4);
+            int res = mr.MovRevCountByGrade(2413320, 4);
             int exp = 19;
 
             Assert.Equal(exp, res);
@@ -148,7 +148,7 @@ namespace CompanyName.MovieRater.UnitTesting
             };
 
             Stopwatch sw = Stopwatch.StartNew();
-            mr.MovRevByGrade(2413320, 2);
+            mr.MovRevCountByGrade(2413320, 2);
             sw.Stop();
 
             Assert.True(sw.ElapsedMilliseconds < 4000);

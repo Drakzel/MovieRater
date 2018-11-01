@@ -4,6 +4,9 @@ using System.Text;
 
 namespace MovieRater
 {
+    /// <summary>
+    /// Review Entitty class. Each Row in JSON become one entity.
+    /// </summary>
     public class Review
     {
         public int Reviewer { get; set; }

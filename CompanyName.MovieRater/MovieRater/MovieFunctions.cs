@@ -7,6 +7,9 @@ using System.Text;
 
 namespace MovieRater
 {
+    /// <summary>
+    /// Implementation Class for IMovieFunctions Interface.
+    /// </summary>
     public class MovieFunctions : IMovieFunctions
     {
         public HashSet<Review> Reviews { get; set; }
@@ -24,6 +27,7 @@ namespace MovieRater
 
             return null;
         }
+
         public int NrOfReviews(int RID)
         {
             int c = Reviews.Where(x => x.Reviewer == RID).Count();
@@ -38,9 +42,9 @@ namespace MovieRater
             return avg;
         }
 
-        public int MovRevByGrade(int MID, int grade)
+        public int MovRevCountByGrade(int RID, int grade)
         {
-            var gc = Reviews.Where(review => MID == review.Movie && review.Grade == grade).Count();
+            var gc = Reviews.Where(review => RID == review.Reviewer && review.Grade == grade).Count();
 
             return gc;
         }
