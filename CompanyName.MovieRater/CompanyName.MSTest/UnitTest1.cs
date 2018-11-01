@@ -131,7 +131,7 @@ namespace CompanyName.MsTest
                 Reviews = reviews
             };
 
-            int res = mr.MovRevByGrade(2413320, 4);
+            int res = mr.MovRevCountByGrade(2413320, 4);
             int exp = 19;
 
             Assert.AreEqual(exp, res);
@@ -148,7 +148,7 @@ namespace CompanyName.MsTest
             };
 
             Stopwatch sw = Stopwatch.StartNew();
-            mr.MovRevByGrade(2413320, 2);
+            mr.MovRevCountByGrade(2413320, 2);
             sw.Stop();
 
             Assert.IsTrue(sw.ElapsedMilliseconds < 4000);

@@ -16,7 +16,7 @@ namespace CompanyName.MovieRater
             //        item.Reviewer, item.Movie, item.Grade, item.Date);
             //}
             x.ReadJson(Path);
-            var asd = x.MovieRevAvg(2534508); 
+            var asd = x.ReviewerMostReviews().Count; 
             Console.WriteLine(asd);
             Console.ReadLine();
         }
