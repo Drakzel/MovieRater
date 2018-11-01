@@ -11,10 +11,11 @@ namespace CompanyName.MovieRater.UnitTesting
 {
     public class UnitTest1
     {
-        private const string Path = "../../../../../../ratings.json";
 
-        private readonly HashSet<Review> reviews = new HashSet<Review>();
-        private readonly HashSet<Review> reviewsTop = new HashSet<Review>();
+            private const string Path = "../../../../../../ratings.json";
+
+            private readonly HashSet<Review> reviews = new HashSet<Review>();
+            private readonly HashSet<Review> reviewsTop = new HashSet<Review>();
 
 
         public UnitTest1()
@@ -219,6 +220,200 @@ namespace CompanyName.MovieRater.UnitTesting
             sw.Stop();
 
             Assert.True(sw.ElapsedMilliseconds < 4000);
+        }
+        #endregion
+
+        #region Movie Reviewed By Grade 
+        [Fact]
+        public void MovRevByGradeTest()
+        {
+            IMovieFunctions mr = new MovieFunctions
+            {
+                // List<Review> list = ReadJSONTop10(PATH);
+
+                Reviews = reviews
+            };
+
+            double res = mr.MovieReviewedByGrade(2023084, 5);
+            int exp = 4;
+
+            Assert.Equal(exp, res);
+        }
+
+        [Fact]
+        public void MovRevByGradePerfTest()
+        {
+
+            IMovieFunctions mr = new MovieFunctions
+            {
+                Reviews = reviews
+            };
+
+            Stopwatch sw = Stopwatch.StartNew();
+            mr.MovieReviewedByGrade(2023084, 1);
+            sw.Stop();
+
+            Assert.True(sw.ElapsedMilliseconds < 4000);
+        }
+        #endregion
+
+        #region Most Top Rated Movies
+        [Fact]
+        public void MostTopRatedMovTest()
+        {
+            IMovieFunctions mr = new MovieFunctions
+            {
+                Reviews = reviews
+            };
+
+            var res = mr.MoviesMostTopRated().Count();
+            int exp = 6;
+
+            Assert.Equal(exp, res);
+        }
+
+        [Fact]
+        public void MostTopRatedMovPerfTest()
+        {
+
+            IMovieFunctions mr = new MovieFunctions
+            {
+                Reviews = reviews
+            };
+
+            Stopwatch sw = Stopwatch.StartNew();
+            mr.MoviesMostTopRated();
+            sw.Stop();
+
+            Assert.True(sw.ElapsedMilliseconds < 4000);
+        }
+        #endregion
+
+        #region Most Reviews By Reviewer
+        [Fact]
+        public void MostRevByRevTest()
+        {
+            IMovieFunctions mr = new MovieFunctions
+            {
+                Reviews = reviews
+            };
+
+            var res = mr.ReviewerMostReviews().Count();
+            int exp = 1;
+
+            Assert.Equal(exp, res);
+        }
+
+        [Fact]
+        public void MostRevByRevPerfTest()
+        {
+
+            IMovieFunctions mr = new MovieFunctions
+            {
+                Reviews = reviews
+            };
+
+            Stopwatch sw = Stopwatch.StartNew();
+            mr.ReviewerMostReviews().Count();
+            sw.Stop();
+
+            Assert.True(sw.ElapsedMilliseconds < 4000);
+        }
+        #endregion
+
+        #region Number of Top Movies Ord. By Avg. Rating
+        [Fact]
+        public void NrBestAvgTest()
+        {
+            IMovieFunctions mr = new MovieFunctions
+            {
+                Reviews = reviews
+            };
+
+            int g = 5;
+            foreach(int i in mr.BestMovies(10)) 
+            {
+                Review r = reviews.FirstOrDefault(rev=>rev.Movie == i);
+                Assert.True(g >= r.Grade);
+            }
+        }
+
+        [Fact]
+        public void NrBestAvgPerfTest()
+        {
+
+            IMovieFunctions mr = new MovieFunctions
+            {
+                Reviews = reviews
+            };
+            
+                Stopwatch sw = Stopwatch.StartNew();
+                mr.BestMovies(10);
+                sw.Stop();
+                Assert.True(sw.ElapsedMilliseconds <= 4000);
+        }
+        #endregion
+
+        #region Movies of Reviewers
+        [Fact]
+        public void MovofRevTest()
+        {
+            IMovieFunctions mr = new MovieFunctions
+            {
+                Reviews = reviews
+            };
+
+            List<int> exp = reviews.OrderByDescending(m => m.Grade).ThenByDescending(m => m.Date).Select(m => m.Movie).ToList();
+            List<int> res = mr.ReviewersMovies(1);
+
+            Assert.Equal(exp, res);
+        }
+
+        [Fact]
+        public void MovofRevPerfTest()
+        {
+
+            IMovieFunctions mr = new MovieFunctions
+            {
+                Reviews = reviews
+            };
+
+            Stopwatch sw = Stopwatch.StartNew();
+            mr.ReviewersMovies(1);
+            sw.Stop();
+            Assert.True(sw.ElapsedMilliseconds <= 4000);
+        }
+        #endregion
+
+        #region Reviewers of Movies
+        [Fact]
+        public void RevOfMovTest()
+        {
+            IMovieFunctions mr = new MovieFunctions
+            {
+                Reviews = reviews
+            };
+
+            List<int> exp = new List<int> { 393 };
+
+            Assert.Equal(exp, mr.MovieReviews(2342338));
+            Assert.Equal(exp, mr.MovieReviews(1591957));
+
+        }
+
+        [Fact]
+        public void RevOfMovPerfTest()
+        {
+
+            IMovieFunctions mr = new MovieFunctions
+            {
+                Reviews = reviews
+            };
+
+            Stopwatch sw = Stopwatch.StartNew();
+            mr.MovieReviews(2342338);
+            sw.Stop();
+            Assert.True(sw.ElapsedMilliseconds <= 4000);
         }
         #endregion
     }
