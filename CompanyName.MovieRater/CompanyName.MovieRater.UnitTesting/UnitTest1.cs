@@ -13,11 +13,15 @@ namespace CompanyName.MovieRater.UnitTesting
     public class UnitTest1
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         [TestMethod]
         public void Test1()
 =======
         private const string Path = "../../../../../../ratings.json";
+=======
+>>>>>>> Attila
 
+            private const string Path = "../../../../../../ratings.json";
 
             private readonly HashSet<Review> reviews = new HashSet<Review>();
             private readonly HashSet<Review> reviewsTop = new HashSet<Review>();

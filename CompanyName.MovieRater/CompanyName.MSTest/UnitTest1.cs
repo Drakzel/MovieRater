@@ -7,11 +7,12 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
-namespace CompanyName.MsTest
+namespace CompanyName.MovieRater.MSTest
 {
     [TestClass]
     public class UnitTest1
     {
+
         private const string Path = "../../../../../../ratings.json";
 
         private readonly HashSet<Review> reviews = new HashSet<Review>();
@@ -124,7 +125,7 @@ namespace CompanyName.MsTest
 
         #region MovieReviewedByGrade
         [TestMethod]
-        public void MovRevByGradeCountTest()
+        public void MovRevCountByGradeTest()
         {
             IMovieFunctions mr = new MovieFunctions
             {
@@ -142,8 +143,6 @@ namespace CompanyName.MsTest
         {
             IMovieFunctions mr = new MovieFunctions
             {
-                //List<Review> list = ReadJSON(PATH);
-
                 Reviews = reviews
             };
 
@@ -196,6 +195,7 @@ namespace CompanyName.MsTest
             IMovieFunctions mr = new MovieFunctions
             {
                 // List<Review> list = ReadJSONTop10(PATH);
+
                 Reviews = reviews
             };
 
@@ -221,7 +221,199 @@ namespace CompanyName.MsTest
             Assert.IsTrue(sw.ElapsedMilliseconds < 4000);
         }
         #endregion
+
+        #region Movie Reviewed By Grade 
+        [TestMethod]
+        public void MovRevByGradeTest()
+        {
+            IMovieFunctions mr = new MovieFunctions
+            {
+                // List<Review> list = ReadJSONTop10(PATH);
+
+                Reviews = reviews
+            };
+
+            double res = mr.MovieReviewedByGrade(2023084, 5);
+            int exp = 4;
+
+            Assert.AreEqual(exp, res);
+        }
+
+        [TestMethod]
+        public void MovRevByGradePerfTest()
+        {
+
+            IMovieFunctions mr = new MovieFunctions
+            {
+                Reviews = reviews
+            };
+
+            Stopwatch sw = Stopwatch.StartNew();
+            mr.MovieReviewedByGrade(2023084, 1);
+            sw.Stop();
+
+            Assert.IsTrue(sw.ElapsedMilliseconds < 4000);
+        }
+        #endregion
+
+        #region Most Top Rated Movies
+        [TestMethod]
+        public void MostTopRatedMovTest()
+        {
+            IMovieFunctions mr = new MovieFunctions
+            {
+                Reviews = reviews
+            };
+
+            var res = mr.MoviesMostTopRated().Count();
+            int exp = 6;
+
+            Assert.AreEqual(exp, res);
+        }
+
+        [TestMethod]
+        public void MostTopRatedMovPerfTest()
+        {
+
+            IMovieFunctions mr = new MovieFunctions
+            {
+                Reviews = reviews
+            };
+
+            Stopwatch sw = Stopwatch.StartNew();
+            mr.MoviesMostTopRated();
+            sw.Stop();
+
+            Assert.IsTrue(sw.ElapsedMilliseconds < 4000);
+        }
+        #endregion
+
+        #region Most Reviews By Reviewer
+        [TestMethod]
+        public void MostRevByRevTest()
+        {
+            IMovieFunctions mr = new MovieFunctions
+            {
+                Reviews = reviews
+            };
+
+            var res = mr.ReviewerMostReviews().Count();
+            int exp = 1;
+
+            Assert.AreEqual(exp, res);
+        }
+
+        [TestMethod]
+        public void MostRevByRevPerfTest()
+        {
+
+            IMovieFunctions mr = new MovieFunctions
+            {
+                Reviews = reviews
+            };
+
+            Stopwatch sw = Stopwatch.StartNew();
+            mr.ReviewerMostReviews().Count();
+            sw.Stop();
+
+            Assert.IsTrue(sw.ElapsedMilliseconds < 4000);
+        }
+        #endregion
+
+        #region Number of Top Movies Ord. By Avg. Rating
+        [TestMethod]
+        public void NrBestAvgTest()
+        {
+            IMovieFunctions mr = new MovieFunctions
+            {
+                Reviews = reviews
+            };
+
+            int g = 5;
+            foreach (int i in mr.BestMovies(10))
+            {
+                Review r = reviews.FirstOrDefault(rev => rev.Movie == i);
+                Assert.IsTrue(g >= r.Grade);
+            }
+        }
+
+        [TestMethod]
+        public void NrBestAvgPerfTest()
+        {
+
+            IMovieFunctions mr = new MovieFunctions
+            {
+                Reviews = reviews
+            };
+
+            Stopwatch sw = Stopwatch.StartNew();
+            mr.BestMovies(10);
+            sw.Stop();
+            Assert.IsTrue(sw.ElapsedMilliseconds <= 4000);
+        }
+        #endregion
+
+        #region Movies of Reviewers
+        [TestMethod]
+        public void MovofRevTest()
+        {
+            IMovieFunctions mr = new MovieFunctions
+            {
+                Reviews = reviews
+            };
+
+            List<int> exp = reviews.OrderByDescending(m => m.Grade).ThenByDescending(m => m.Date).Select(m => m.Movie).ToList();
+            List<int> res = mr.ReviewersMovies(1);
+
+            Assert.AreEqual(exp, res);
+        }
+
+        [TestMethod]
+        public void MovofRevPerfTest()
+        {
+
+            IMovieFunctions mr = new MovieFunctions
+            {
+                Reviews = reviews
+            };
+
+            Stopwatch sw = Stopwatch.StartNew();
+            mr.ReviewersMovies(1);
+            sw.Stop();
+            Assert.IsTrue(sw.ElapsedMilliseconds <= 4000);
+        }
+        #endregion
+
+        #region Reviewers of Movies
+        [TestMethod]
+        public void RevOfMovTest()
+        {
+            IMovieFunctions mr = new MovieFunctions
+            {
+                Reviews = reviews
+            };
+
+            List<int> exp = new List<int> { 393 };
+
+            Assert.AreEqual(exp, mr.MovieReviews(2342338));
+            Assert.AreEqual(exp, mr.MovieReviews(1591957));
+
+        }
+
+        [TestMethod]
+        public void RevOfMovPerfTest()
+        {
+
+            IMovieFunctions mr = new MovieFunctions
+            {
+                Reviews = reviews
+            };
+
+            Stopwatch sw = Stopwatch.StartNew();
+            mr.MovieReviews(2342338);
+            sw.Stop();
+            Assert.IsTrue(sw.ElapsedMilliseconds <= 4000);
+        }
+        #endregion
     }
 }
-
-    
