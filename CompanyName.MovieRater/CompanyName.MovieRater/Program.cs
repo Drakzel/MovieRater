@@ -9,19 +9,15 @@ namespace CompanyName.MovieRater
         {
             string Path = "../../../../../../ratings.json";
             IMovieFunctions x = new MovieFunctions();
-<<<<<<< HEAD
-
-            var g = x.GetAll();
-            foreach (var item in g)
-            {
-                Console.WriteLine("Reviewer ID: {0}, Movie ID: {1}, Grade: {2}, Date: {3}\n",
-                    item.Reviewer, item.Movie, item.Grade, item.Date);
-            }
-=======
+            //var g = x.GetAll();
+            //foreach (var item in g)
+            //{
+            //    Console.WriteLine("Reviewer ID: {0}, Movie ID: {1}, Grade: {2}, Date: {3}\n",
+            //        item.Reviewer, item.Movie, item.Grade, item.Date);
+            //}
             x.ReadJson(Path);
             var asd = x.MovieRevAvg(2534508); 
             Console.WriteLine(asd);
->>>>>>> Attila
             Console.ReadLine();
         }
     }

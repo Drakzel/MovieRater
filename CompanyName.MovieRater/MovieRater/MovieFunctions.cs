@@ -57,7 +57,7 @@ namespace MovieRater
 
         public Review GetReviewer(int id)
         {
-            return reviews.FirstOrDefault(m => m.Reviewer == id);
+            return Reviews.FirstOrDefault(m => m.Reviewer == id);
         }
     }
 

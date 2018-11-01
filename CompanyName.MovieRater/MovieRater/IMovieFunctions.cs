@@ -6,10 +6,7 @@ namespace MovieRater
 {
     public interface IMovieFunctions
     {
-<<<<<<< HEAD
-        List<Review> GetAll();
-        Review GetReviewer(int id);
-=======
+
         HashSet<Review> Reviews { get; set; }
         HashSet<Review> ReviewsTop { get; set; }
         List<Review> ReadJson(string path);
@@ -19,6 +16,5 @@ namespace MovieRater
         int MovRevByGrade(int MID, int grade);
         int MovieRevCount(int MID);
         double MovieRevAvg(int MID);
->>>>>>> Attila
     }
 }
