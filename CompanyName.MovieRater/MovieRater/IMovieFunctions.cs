@@ -58,12 +58,12 @@ namespace MovieRater
         /// <returns>The list of movies that were top rated.</returns>
         List<int> MoviesMostTopRated();
         /// <summary>
-        /// Method for getting the Reviewer that had made the most reviews 
+        /// Method for finding the Reviewer that had made the most reviews 
         /// </summary>
         /// <returns>The Reviewer that made the most reviews</returns>
         List<int> ReviewerMostReviews();
         /// <summary>
-        /// Method for getting the method with the best score. Score is determined by rating average.
+        /// Method for finding the Movie with the best score. Score is determined by rating average.
         /// </summary>
         /// <param name="num">Score parameter</param>
         /// <returns>The movie with the best score</returns>

@@ -194,8 +194,6 @@ namespace CompanyName.MovieRater.MSTest
         {
             IMovieFunctions mr = new MovieFunctions
             {
-                // List<Review> list = ReadJSONTop10(PATH);
-
                 Reviews = reviews
             };
 
@@ -208,7 +206,6 @@ namespace CompanyName.MovieRater.MSTest
         [TestMethod]
         public void AvgRatePerfTest()
         {
-
             IMovieFunctions mr = new MovieFunctions
             {
                 Reviews = reviews
@@ -228,8 +225,6 @@ namespace CompanyName.MovieRater.MSTest
         {
             IMovieFunctions mr = new MovieFunctions
             {
-                // List<Review> list = ReadJSONTop10(PATH);
-
                 Reviews = reviews
             };
 
